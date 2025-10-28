@@ -87,12 +87,12 @@ fun SignUpContent(
             .background(gradient)
             .padding(horizontal = 16.dp, vertical = 12.dp)
     ) {
-        // ===== Header (logo + SPARK + subtitle) — diturunin sedikit =====
+        // ===== Header (logo)
         Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .align(Alignment.TopCenter)
-                .padding(top = 32.dp),
+                .padding(top = 20.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(
@@ -100,25 +100,6 @@ fun SignUpContent(
                 contentDescription = "UGM Logo",
                 contentScale = ContentScale.Fit,
                 modifier = Modifier.size(56.dp)
-            )
-            Spacer(Modifier.height(8.dp))
-            Text(
-                text = "SPARK",
-                style = MaterialTheme.typography.headlineLarge.copy(
-                    fontSize = 28.sp,
-                    fontWeight = FontWeight.ExtraBold
-                ),
-                color = Color(0xFF0A2342), // navy
-                textAlign = TextAlign.Center
-            )
-            Spacer(Modifier.height(2.dp))
-            Text(
-                text = "Smart Parking System",
-                style = MaterialTheme.typography.titleMedium.copy(
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.SemiBold
-                ),
-                textAlign = TextAlign.Center
             )
         }
 

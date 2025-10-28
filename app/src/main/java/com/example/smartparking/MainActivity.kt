@@ -64,7 +64,6 @@ private fun WithDrawer(
             DrawerContent(
                 selectedRoute = selectedRoute,
                 onItemClick = { route ->
-                    // tutup dulu biar nggak glitch, lalu navigate
                     scope.launch {
                         drawerState.close()
                         delay(120)
@@ -77,7 +76,7 @@ private fun WithDrawer(
         Box(Modifier.fillMaxSize()) {
             content { scope.launch { drawerState.open() } }
 
-            // Tombol hamburger melayang (kiri-atas)
+            // Hamburger melayang global
             Surface(
                 tonalElevation = 3.dp,
                 shadowElevation = 6.dp,
@@ -110,7 +109,6 @@ class MainActivity : ComponentActivity() {
             SmartParkingTheme {
                 val navController = rememberNavController()
 
-                // full-bleed, no white margins
                 Scaffold(
                     containerColor = Color.Transparent,
                     contentWindowInsets = WindowInsets(0)
@@ -125,26 +123,22 @@ class MainActivity : ComponentActivity() {
                             startDestination = Screen.Landing.route,
                             modifier = Modifier.fillMaxSize()
                         ) {
-
-                            /* ---------- Public screens (tanpa drawer) ---------- */
+                            // ---------- Public ----------
                             composable(Screen.Landing.route) {
                                 LandingPageScreen(
                                     brandName = "SPARK",
                                     subTitle = "Smart Parking FT UGM",
                                     brandColor = Color(0xFF0A2342),
                                     modifier = Modifier.fillMaxSize(),
-                                    onNavigateNext = {
-                                        navController.navigate(Screen.Login.route)
-                                    }
+                                    onNavigateNext = { navController.navigate(Screen.Login.route) }
                                 )
                             }
-
                             composable(Screen.Login.route) {
                                 LoginPage(
-                                    demoDirectLogin = true,           // ← bypass BE: langsung Home
+                                    demoDirectLogin = true, // langsung ke Home
                                     onLoginSuccess = {
                                         navController.navigate(Screen.Home.route) {
-                                            popUpTo(Screen.Landing.route) { inclusive = true } // bersihkan stack
+                                            popUpTo(Screen.Landing.route) { inclusive = true }
                                             launchSingleTop = true
                                         }
                                     },
@@ -152,7 +146,6 @@ class MainActivity : ComponentActivity() {
                                     onForgotPasswordClick = { navController.navigate(Screen.EditPass.route) }
                                 )
                             }
-
                             composable(Screen.SignUp.route) {
                                 SignUpPage(
                                     onRegistered = {
@@ -164,12 +157,11 @@ class MainActivity : ComponentActivity() {
                                     onBackToLogin = { navController.popBackStack() }
                                 )
                             }
-
                             composable(Screen.EditPass.route) {
                                 EditPassPage(onBackToLogin = { navController.popBackStack() })
                             }
 
-                            /* ---------- Private screens (pakai drawer) ---------- */
+                            // ---------- Private (pakai drawer global) ----------
                             composable(Screen.Home.route) {
                                 WithDrawer(
                                     selectedRoute = Screen.Home.route,
@@ -179,11 +171,11 @@ class MainActivity : ComponentActivity() {
                                             popUpTo(Screen.Home.route) { inclusive = false }
                                         }
                                     }
-                                ) { openDrawer ->
-                                    HomePage(onMenuClick = openDrawer)
+                                ) { _ ->
+                                    // ⬇️ HomePage tanpa onMenuClick
+                                    HomePage()
                                 }
                             }
-
                             composable(Screen.Live.route) {
                                 WithDrawer(
                                     selectedRoute = Screen.Live.route,
@@ -193,11 +185,8 @@ class MainActivity : ComponentActivity() {
                                             popUpTo(Screen.Home.route) { inclusive = false }
                                         }
                                     }
-                                ) { _ ->
-                                    LiveParkingPage()
-                                }
+                                ) { _ -> LiveParkingPage() }
                             }
-
                             composable(Screen.History.route) {
                                 WithDrawer(
                                     selectedRoute = Screen.History.route,
@@ -207,11 +196,8 @@ class MainActivity : ComponentActivity() {
                                             popUpTo(Screen.Home.route) { inclusive = false }
                                         }
                                     }
-                                ) { _ ->
-                                    HistoryPage()
-                                }
+                                ) { _ -> HistoryPage() }
                             }
-
                             composable(Screen.Info.route) {
                                 WithDrawer(
                                     selectedRoute = Screen.Info.route,
@@ -221,11 +207,8 @@ class MainActivity : ComponentActivity() {
                                             popUpTo(Screen.Home.route) { inclusive = false }
                                         }
                                     }
-                                ) { _ ->
-                                    InformationPage()
-                                }
+                                ) { _ -> InformationPage() }
                             }
-
                             composable(Screen.Logout.route) {
                                 WithDrawer(
                                     selectedRoute = Screen.Logout.route,
