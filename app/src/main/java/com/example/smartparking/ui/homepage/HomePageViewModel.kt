@@ -21,7 +21,7 @@ class HomePageViewModel : ViewModel() {
     fun fetchParkingStatus() {
         viewModelScope.launch {
             // Simulasi fetch (biar terlihat smooth di UI); ganti dengan API nanti
-            delay(120)
+            delay(0)
             _parkingStatus.value = ParkingStatus(totalSlots = 147, usedSlots = 65)
         }
     }

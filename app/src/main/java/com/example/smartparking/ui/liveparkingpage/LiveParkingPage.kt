@@ -102,9 +102,6 @@ fun LiveParkingPage_DtetiPreview(
     }
 }
 
-// ----------------------------
-// Kartu lot dengan overlay presisi + tombol refresh di bawah peta
-// ----------------------------
 @Composable
 private fun LotCard(
     lot: Lot,
@@ -226,13 +223,11 @@ private fun LotCard(
 // ----------------------------
 fun sampleLot(@DrawableRes mapRes: Int): Lot {
     val slots = listOf(
-        Slot("S1", 0.05f, 0.62f, 0.10f, 0.27f, occupied = true),
-        Slot("S2", 0.17f, 0.62f, 0.10f, 0.27f),
-        Slot("S3", 0.29f, 0.62f, 0.10f, 0.27f, occupied = true),
-        Slot("S4", 0.41f, 0.62f, 0.10f, 0.27f),
-        Slot("S5", 0.53f, 0.62f, 0.10f, 0.27f),
-        Slot("S6", 0.65f, 0.62f, 0.10f, 0.27f, accessible = true),
-        Slot("S7", 0.77f, 0.62f, 0.10f, 0.27f)
+        Slot("S1", 0.14f, 0.5f, 0.10f, 0.33f, occupied = true),
+        Slot("S2", 0.3f, 0.5f, 0.10f, 0.33f),
+        Slot("S3", 0.45f, 0.5f, 0.10f, 0.33f, occupied = true),
+        Slot("S4", 0.61f, 0.5f, 0.10f, 0.33f),
+        Slot("S5", 0.76f, 0.5f, 0.10f, 0.33f, accessible = true)
     )
     val used = slots.count { it.occupied }
     val free = slots.size - used

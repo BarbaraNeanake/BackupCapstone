@@ -26,7 +26,7 @@ import com.example.smartparking.ui.historypage.HistoryPage
 import com.example.smartparking.ui.homepage.HomePage
 import com.example.smartparking.ui.informationpage.InformationPage
 import com.example.smartparking.ui.landingpage.LandingPageScreen
-import com.example.smartparking.ui.liveparkingpage.LiveParkingPage
+import com.example.smartparking.ui.liveparkingpage.LiveUiState
 import com.example.smartparking.ui.loginpage.LoginPage
 import com.example.smartparking.ui.logoutpage.LogoutPage
 import com.example.smartparking.ui.signuppage.SignUpPage
@@ -66,7 +66,7 @@ private fun WithDrawer(
                 onItemClick = { route ->
                     scope.launch {
                         drawerState.close()
-                        delay(120)
+                        delay(60)
                         onNavigateRoute(route)
                     }
                 }
@@ -84,7 +84,7 @@ private fun WithDrawer(
                 shape = MaterialTheme.shapes.extraLarge,
                 modifier = Modifier
                     .align(Alignment.TopStart)
-                    .padding(start = 12.dp, top = 12.dp)
+                    .padding(start = 12.dp, top = 50.dp)
             ) {
                 IconButton(onClick = { scope.launch { drawerState.open() } }) {
                     Icon(
@@ -185,7 +185,7 @@ class MainActivity : ComponentActivity() {
                                             popUpTo(Screen.Home.route) { inclusive = false }
                                         }
                                     }
-                                ) { _ -> LiveParkingPage() }
+                                ) { _ -> LiveParkingPage_DtetiPreview(R.drawable.liveparkingmap) }
                             }
                             composable(Screen.History.route) {
                                 WithDrawer(

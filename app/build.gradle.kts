@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.example.smartparking"
-    compileSdk = 34   // aman & stabil
+    compileSdk = 35   // aman & stabil
 
     defaultConfig {
         applicationId = "com.example.smartparking"
